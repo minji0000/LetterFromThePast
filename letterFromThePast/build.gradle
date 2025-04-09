@@ -6,24 +6,19 @@ plugins {
 
 group = 'org.letter'
 version = '0.0.1-SNAPSHOT'
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(23)
-    }
-}
-
-repositories {
-    mavenCentral()
-}
+sourceCompatibility = '21'
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-web-services'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+    runtimeOnly 'org.apache.tomcat.embed:tomcat-embed-jasper'
+    implementation 'jakarta.servlet:jakarta.servlet-api:6.0.0' // JSP용 Servlet API
 }
 
-tasks.named('test') {
-    useJUnitPlatform()
+repositories {
+    mavenCentral() // ✅ 가장 기본이 되는 중앙 저장소
+}
+
+test {
+    useJUnitPlatform() // ✅ JUnit 5를 사용하겠다고 명시해야 해요
 }

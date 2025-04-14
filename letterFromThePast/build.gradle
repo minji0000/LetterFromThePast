@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'war'  // ← 꼭 있어야 함
     id 'org.springframework.boot' version '3.4.1'
     id 'io.spring.dependency-management' version '1.1.7'
 }
@@ -9,14 +10,18 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '21'
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
-    runtimeOnly 'org.apache.tomcat.embed:tomcat-embed-jasper'
-    implementation 'jakarta.servlet:jakarta.servlet-api:6.0.0' // JSP용 Servlet API
-}
 
-repositories {
-    mavenCentral() // ✅ 가장 기본이 되는 중앙 저장소
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+
+    // JSP 관련 의존성
+    implementation 'javax.servlet:jstl'
+    runtimeOnly 'org.apache.tomcat.embed:tomcat-embed-jasper'
+
+    implementation 'jakarta.servlet:jakarta.servlet-api:6.0.0' // JSP용 Servlet API
+
+    // Spring Boot 기본 의존성
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 }
 
 test {

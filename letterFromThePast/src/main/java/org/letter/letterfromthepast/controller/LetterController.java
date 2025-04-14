@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class LetterController{
     @GetMapping("/letter")
     public String letter(){
+        System.out.println("얍");
+
         return "letter/letterMainView";
     }
 
